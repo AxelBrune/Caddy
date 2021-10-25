@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:caddy/fidelity_cards.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetList = <Widget>[
     Text('Page 1', style: TextStyle(color: Colors.white)),
-    Text('Page 2', style: TextStyle(color: Colors.white)),
+    FidelityCards(),
     Text('Page 3', style: TextStyle(color: Colors.white)),
   ];
 

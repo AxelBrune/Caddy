@@ -15,8 +15,6 @@ class FidelityCards extends StatefulWidget {
 }
 
 class _FidelityCardsState extends State<FidelityCards> {
-  String _scannedCode = 'Inconnu';
-
   @override
   void initState() {
     super.initState();
@@ -38,9 +36,6 @@ class _FidelityCardsState extends State<FidelityCards> {
     } on PlatformException {
       result = 'Problème de plateforme';
     }
-    // setState(() {
-    //   _scannedCode = result;
-    // });
   }
 
   final Stream<QuerySnapshot> _cardsStream =
@@ -79,20 +74,22 @@ class _FidelityCardsState extends State<FidelityCards> {
                       snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data()! as Map<String, dynamic>;
+
                 return Container(
-                  margin: EdgeInsets.only(bottom: 10),
+                  margin: const EdgeInsets.only(bottom: 10),
                   child: FlipCard(
                     direction: FlipDirection.HORIZONTAL,
                     speed: 1000,
                     front: Container(
-                      height: 100,
+                      height: 200,
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.teal,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.0),
-                        ),
-                      ),
+                      color: Color(data['color']),
+                      // decoration: const BoxDecoration(
+                      //   // color: Colors.teal,
+                      //   borderRadius: BorderRadius.all(
+                      //     Radius.circular(8.0),
+                      //   ),
+                      // ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -109,7 +106,7 @@ class _FidelityCardsState extends State<FidelityCards> {
                     back: Container(
                       height: 200,
                       width: double.infinity,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(
                           Radius.circular(8.0),

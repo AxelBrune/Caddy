@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/rendering.dart';
 
 class FidelityEdition extends StatefulWidget {
   final String barcode;
   final String shopName;
+
   const FidelityEdition(
       {Key? key, @required this.barcode = "", this.shopName = ""})
       : super(key: key);
@@ -17,6 +19,13 @@ class _FidelityEditionState extends State<FidelityEdition> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final nameController = TextEditingController();
+
+  int selectedColor = Colors.teal.value;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -32,9 +41,10 @@ class _FidelityEditionState extends State<FidelityEdition> {
     return fidelityCards.add({
       'barcode': widget.barcode,
       'shop': nameController.text,
+      'color': selectedColor,
     }).then((value) {
       Navigator.pop(context);
-    }).catchError((error) => print("Failed to add user: $error"));
+    }).catchError((error) => print("Failed to add card: $error"));
   }
 
   @override
@@ -47,7 +57,7 @@ class _FidelityEditionState extends State<FidelityEdition> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),
@@ -58,18 +68,18 @@ class _FidelityEditionState extends State<FidelityEdition> {
         child: Form(
           key: _formKey,
           child: Container(
-            margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             child: Column(
               children: [
-                Container(
-                  color: Colors.white,
-                  child: BarcodeWidget(
-                    color: Colors.black,
-                    data: widget.barcode,
-                    barcode: Barcode.ean13(drawEndChar: true),
-                  ),
-                ),
-                SizedBox(height: 30),
+                // Container(
+                //   color: Colors.white,
+                //   child: BarcodeWidget(
+                //     color: Colors.black,
+                //     data: widget.barcode,
+                //     barcode: Barcode.ean13(drawEndChar: true),
+                //   ),
+                // ),
+                // const SizedBox(height: 30),
                 TextFormField(
                   controller: nameController,
                   decoration: const InputDecoration(
@@ -83,6 +93,98 @@ class _FidelityEditionState extends State<FidelityEdition> {
                     }
                     return null;
                   },
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedColor = Colors.teal.value;
+                        });
+                      },
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Colors.teal,
+                        child: selectedColor == Colors.teal.value
+                            ? const Icon(
+                                Icons.check,
+                              )
+                            : const Text(''),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          shape: const CircleBorder(), primary: Colors.teal),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedColor = Colors.purple.value;
+                        });
+                      },
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Colors.purple,
+                        child: selectedColor == Colors.purple.value
+                            ? const Icon(Icons.check)
+                            : const Text(''),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(), primary: Colors.purple),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedColor = Colors.amber.value;
+                        });
+                      },
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Colors.amber,
+                        child: selectedColor == Colors.amber.value
+                            ? Icon(Icons.check)
+                            : Text(''),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(), primary: Colors.amber),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedColor = Colors.blue.value;
+                        });
+                      },
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Colors.blue,
+                        child: selectedColor == Colors.blue.value
+                            ? Icon(Icons.check)
+                            : Text(''),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(), primary: Colors.blue),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedColor = Colors.red.value;
+                        });
+                      },
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Colors.red,
+                        child: selectedColor == Colors.red.value
+                            ? Icon(Icons.check)
+                            : Text(''),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(), primary: Colors.red),
+                    )
+                  ],
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(

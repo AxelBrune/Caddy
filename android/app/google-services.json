@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "557240326582",
+    "project_id": "caddy-490a3",
+    "storage_bucket": "caddy-490a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557240326582:android:81ad0a7876d1ead4554917",
+        "android_client_info": {
+          "package_name": "com.example.caddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "557240326582-h4hgqkpq8e6kam3vpn9b5bgeh38nradc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs0j7NHZey3EpxDM3vr84USqLimQGEfXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "557240326582-h4hgqkpq8e6kam3vpn9b5bgeh38nradc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
